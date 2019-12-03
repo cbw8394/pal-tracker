@@ -1,30 +1,30 @@
 package io.pivotal.pal.tracker;
 
+import java.util.List;
+
 public class TimeEntryRepository {
-    private TimeEntry timeEntry;
-    private long timeEntryId;
-    private long eq;
 
-    public void create(TimeEntry timeEntry) {
-
-        this.timeEntry = timeEntry;
-    }
-
-    public void find(long timeEntryId) {
-
-        this.timeEntryId = timeEntryId;
-    }
-
-    public void list() {
+InMemoryTimeEntryRepository inMemoryTimeEntryRepository = new InMemoryTimeEntryRepository();
+    public TimeEntry create(TimeEntry timeEntry) {
+       return inMemoryTimeEntryRepository.create(new TimeEntry(inMemoryTimeEntryRepository.generateId() ,timeEntry.getProjectId(),timeEntry.getUserId(),timeEntry.getDate(),timeEntry.getHours()));
 
     }
 
-    public void update(long timeEntryId, TimeEntry timeEntry) {
+    public TimeEntry find(long timeEntryId) {
+        return inMemoryTimeEntryRepository.find(timeEntryId);
 
-        this.timeEntryId = timeEntryId;
-        this.timeEntry = timeEntry;
+    }
+
+    public List<TimeEntry> list() {
+        return inMemoryTimeEntryRepository.list();
+    }
+
+    public TimeEntry update(long timeEntryId, TimeEntry timeEntry) {
+
+        return inMemoryTimeEntryRepository.update(timeEntryId,timeEntry);
     }
 
     public void delete(long timeEntryId) {
+        inMemoryTimeEntryRepository.delete(timeEntryId);
     }
 }
