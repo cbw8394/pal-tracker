@@ -11,7 +11,7 @@ import java.util.List;
 
 public class JdbcTimeEntryRepository  implements  TimeEntryRepository{
     private GeneratedKeyHolder generatedKeyHolder;
-    private final RowMapper<TimeEntry> rowMapper = new RowMapper<>() {
+    private final RowMapper<TimeEntry> rowMapper = new RowMapper<TimeEntry>() {
         @Override
         public TimeEntry mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new TimeEntry(
